@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+<!-- PASO 1) Se registra las entidades -->		
+
+<typeAliases>
+	<typeAlias alias="concursoBeanIbatis" 
+			   type="com.redsocial.bean.ConcursoBean" />
+			   
+	<typeAlias alias="deporteBeanIbatis" 
+			   type="com.redsocial.bean.DeporteBean" />
+			   
+	<typeAlias alias="modalidadBeanIbatis" 
+			   type="com.redsocial.bean.ModalidadBean" />
+			   
+	<typeAlias alias="usuarioBeanIbatis" 
+			   type="com.redsocial.bean.UsuarioBean" />
+			   
+	<typeAlias alias="distritoBeanIbatis" 
+			   type="com.redsocial.bean.DistritoBean" />	
+			   
+	<typeAlias alias="sexoBeanIbatis" 
+			   type="com.redsocial.bean.SexoBean" />	
+			   
+	<typeAlias alias="estadoCivilBeanIbatis"
+			   type="com.redsocial.bean.EstadoCivilBean" />	
+			   
+	<typeAlias alias="nivelEducacionBeanIbatis" 
+			   type="com.redsocial.bean.NivelEducacionBean" />			   	   	   	   
+			   
+			   
+	<typeAlias alias="usuarioDatosBeanIbatis" 
+			   type="com.redsocial.bean.UsuarioDatosBean" />
+		
+		<typeAlias alias="filtroUsuario" 
+			   type="com.redsocial.bean.FiltroUsuario" />
+	
+	<typeAlias alias="respuestaIntereses" 
+			   type="com.redsocial.bean.RespuestaIntereses" />
+			   
+	<typeAlias alias="relacionBeanIbatis" 
+			   type="com.redsocial.bean.Relacion" />
+			   	   		   
+</typeAliases>
+
+
+
+
+<!-- los valores de la conexion -->		
+<environments default="development">
+				<environment id="development">
+					<transactionManager type="JDBC"/>
+						<dataSource type="UNPOOLED">
+								<property name="driver" value="com.mysql.jdbc.Driver"/>
+								<property name="url" value="jdbc:mysql://localhost:3306/mmm"/>
+								<property name="username" value="root"/>
+								<property name="password" value="mysql"/>
+						</dataSource>
+				</environment>
+</environments>
+
+
+		<mappers>
+				<mapper resource="mapper.xml" />
+		</mappers>
+
+</configuration>

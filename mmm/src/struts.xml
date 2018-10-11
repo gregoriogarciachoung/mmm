@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="dawi" namespace="/"
+			extends="struts-default,json-default">
+			
+	<action name="login" class="com.redsocial.action.LoginAction" method="excecute">
+			<result name="SUCCESS">/mmm.jsp</result>
+			<result name="LOGIN">/login.jsp</result>
+		</action>
+
+	<action name="registrar" class="com.redsocial.action.LoginAction" method="registrar">
+			<result name="SUCCESS">/registro.jsp</result>
+		</action>
+		
+		<action name="eli" class="com.redsocial.action.LoginAction" method="cerrar">
+			<result name="LOGIN">/login.jsp</result>
+		</action>
+		
+	<action name="registro" class="com.redsocial.action.RegistroUsuarioAction" method="registrar">
+			<result name="SUCCESS">login.jsp</result>
+		</action>
+	</package>
+
+</struts>

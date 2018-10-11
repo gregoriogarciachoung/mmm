@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dawi">
+	
+	<!-- 
+		- Las clases de entidades se mapean en el myibatis 
+		
+		- Se relaciona las columnas de la tabla con los
+		  atributos del bean
+	-->
+	<!-- 
+	
+		parameterType : parámetro del método que va completar el SQL
+	 -->
+	 
+	<resultMap  id="mapConcurso" type="concursoBeanIbatis">
+		<id property="idConcurso" column="idConcurso"/>
+		<result property="nombre" column="nombre"/>
+		<result property="fechaInicio" column="fechaInicio"/>
+		<result property="fechaFin" column="fechaFin"/>
+		<result property="estado" column="estado"/>
+	</resultMap>
+	
+	<resultMap id="mapDeporte" type="deporteBeanIbatis" >
+		<id property="idDeporte" column="idDeporte"/><!-- PK -->
+		<result property="nombre" column="nombre"/>
+	</resultMap>
+	
+	<resultMap id="mapModalidad" type="modalidadBeanIbatis" >
+		<id property="idModalidad" column="idModalidad"/><!-- PK -->
+		<result property="nombre" column="nombre"/>		<!-- Columna -->
+		<result property="edadMinima" column="edadMinima"/>
+		<result property="edadMaxima" column="edadMaxima"/>
+		<result property="numHombres" column="numHombres"/>
+		<result property="numMujeres" column="numMujeres"/>
+		<association property="deporte" column="idDeporte" 
+								select="SQL_buscaDeporte"/><!-- FK -->
+	</resultMap>
+	
+	<!-- 
+		INICIO CRUD CONCURSO 
+	-->
+	
+	
+
+	<delete id="SQL_eliminaConcurso" parameterType="int">
+		delete from concurso where idconcurso = #{idConcurso}
+	</delete>
+	
+	<select id="SQL_listaConcurso" resultMap="mapConcurso" 
+								   parameterType="java.lang.String">
+			select * from concurso where nombre like #{filtro}
+	</select>	
+	
+	<insert id="SQL_insertaConcurso" parameterType="concursoBeanIbatis">
+		insert into concurso 
+		values(null,#{nombre},#{fechaInicio},#{fechaFin},#{estado})
+	</insert>
+	
+	<update id="SQL_actualizaConcurso" parameterType="concursoBeanIbatis">
+		update concurso set
+		nombre = #{nombre},
+		fechaFin = #{fechaFin},
+		fechaInicio = #{fechaInicio},
+		estado = #{estado}
+		where idconcurso = #{idConcurso}
+	</update>
+	
+	<!-- 
+		INICIO CRUD MODALIDAD 
+	-->
+	<!-- 
+		Este select permite llenar el bean deporte
+		Se llama desde mapModalidad 
+	-->
+	<select id="SQL_buscaDeporte" resultMap="mapDeporte">
+		select * from deporte where iddeporte= #{id}
+	</select>
+	
+	<select id="SQL_listaDeporte" resultMap="mapDeporte">
+		select * from deporte
+	</select>
+	
+	<insert id="SQL_insertaModalidad" parameterType="modalidadBeanIbatis">
+		INSERT INTO modalidad VALUES(null,
+			#{nombre},#{numHombres},
+			#{numMujeres},#{edadMaxima},
+			#{edadMinima},#{deporte.idDeporte})
+	</insert>
+	
+	<select id="SQL_consultaModalidad" resultMap="mapModalidad"
+									   parameterType="java.lang.String">
+		select * from modalidad where nombre like #{filtro}
+	</select>
+	
+	<update id="SQL_actualizaModalidad" parameterType="modalidadBeanIbatis">
+			UPDATE modalidad SET nombre = #{nombre},
+			numHombres = #{numHombres},numMujeres = #{numMujeres},
+			edadMaxima = #{edadMaxima},edadMinima = #{edadMinima},
+			edadMaxima = #{edadMaxima},idDeporte = #{deporte.idDeporte}
+			where idModalidad = #{idModalidad}
+	</update>
+	
+	<delete id="SQL_eliminaModalidad" parameterType="int">
+			DELETE FROM modalidad where idModalidad = #{idModalidad}
+	</delete>
+
+<resultMap id="mapDistrito" type="distritoBeanIbatis" >
+		<id property="id" column="id"/><!-- PK -->
+		<result property="nom" column="nom"/>
+	</resultMap>
+	
+	<resultMap id="mapSexo" type="sexoBeanIbatis" >
+		<id property="id" column="id"/><!-- PK -->
+		<result property="nom" column="nom"/>
+	</resultMap>
+	<resultMap id="mapEstadoCivl" type="estadoCivilBeanIbatis" >
+		<id property="id" column="id"/><!-- PK -->
+		<result property="nom" column="nom"/>
+	</resultMap>
+	
+	<resultMap id="mapNivelEducacion" type="nivelEducacionBeanIbatis" >
+		<id property="id" column="id"/><!-- PK -->
+		<result property="nom" column="nom"/>
+	</resultMap>
+	
+	
+<resultMap  id="mapUsuario" type="usuarioBeanIbatis">
+		<id property="id" column="id"/>
+		<result property="nom" column="nom"/>
+		<result property="mail" column="mail"/>
+		<result property="pass" column="pass"/>
+		
+		<result property="fecNac" column="fecNac"/>
+		<result property="hijos" column="hijos"/>
+		<result property="altura" column="miAltura"/>
+		<result property="ocu" column="ocu"/>
+		<result property="foto" column="foto"/>
+		
+		<!-- ini sp -->
+		<result property="ocu" column="Ocupacion"/>
+		<result property="edad" column="Edad"/>	
+		<result property="nom" column="Nombre"/>	
+		<!-- fin sp -->
+		
+		
+		<association property="distrito" column="idDistrito" 
+								select="SQL_buscaDistrito"/><!-- FK -->
+								
+		<association property="sexos" column="sexo" 
+								select="SQL_buscaSexo"/><!-- FK -->
+								
+		<association property="estCivl" column="estCvil" 
+								select="SQL_buscaEstCivil"/><!-- FK -->	
+								
+		<association property="nivelA" column="nivelEdu" 
+								select="SQL_buscaNivelEdu"/><!-- FK -->		
+								
+																									
+	</resultMap>
+	
+	<select id="SQL_buscaDistrito" resultMap="mapDistrito">
+		select * from distrito where id= #{id}
+	</select>
+	
+	<select id="SQL_buscaSexo" resultMap="mapSexo">
+		select * from sexos where id= #{id}
+	</select>
+	
+	<select id="SQL_buscaEstCivil" resultMap="mapEstadoCivl">
+		select * from estadoCivil where id= #{id}
+	</select>
+	
+	<select id="SQL_buscaNivelEdu" resultMap="mapNivelEducacion">
+		select * from nivelEducacion where id= #{id}
+	</select>
+	
+	<insert id="SQL_insertaUsuario" parameterType="usuarioBeanIbatis">
+		call sp_registraUsuario(#{nom},#{mail},#{pass},#{sexos.id},#{fecNac},#{distrito.id},#{hijos},#{estCivil.id},#{nivelA.id},#{miAltura},#{ocu},null);
+	</insert>
+	
+	<select id="SQL_loginUsuario" parameterType="usuarioBeanIbatis" resultMap="mapUsuario">
+		call sp_login(#{mail},#{pass}) 
+	</select>
+	
+	<resultMap  id="mapUsuarioDatos" type="usuarioDatosBeanIbatis">
+		<id property="idUsu" column="idUsu"/>
+		<result property="hijos" column="hijos"/>
+		<result property="miAltura" column="altura"/>
+		<result property="ocu" column="ocupacion"/>
+		<result property="fecNac" column="fecNac"/>
+	</resultMap>
+	
+	
+	<insert id="SQL_insertaUsuarioDatos" parameterType="usuarioDatosBeanIbatis">
+		insert into usuarioDatos(idUsu, hijos, altura, ocupacion, fecNac)
+		values(#{idUsu},#{hijos},#{miAltura},#{ocu},#{fecNac})
+	</insert>
+
+	<resultMap id="mapRelacion" type="relacionBeanIbatis" >
+		<id property="id" column="id"/><!-- PK -->
+		<result property="nom" column="nom"/>
+	</resultMap>
+		
+	<select id="SQL_buscaRelacion" resultMap="mapRelacion">
+		select * from interes where id= #{id}
+	</select>
+	
+	<resultMap  id="mapMisFiltros" type="filtroUsuario">
+		<result property="sexo" column="Sexo"/>
+		<result property="edadMax" column="EdadMax"/>
+		<result property="edadMin" column="EdadMin"/>
+
+		<association property="relacion" column="relacion" 
+								select="SQL_buscaRelacion"/><!-- FK -->	
+		
+	</resultMap>
+	
+	
+	
+	<select id="SQL_buscaOtroUsuario" resultMap="mapUsuario" parameterType="filtroUsuario">
+		call ps_buscaOtroUsuario(#{sexo},#{edadMin},#{edadMax},#{relacion.id});
+	</select>
+	
+	<select id="SQL_consultaMisDatos" resultMap="mapUsuario" parameterType="usuarioBeanIbatis">
+		call ps_consultaMisDatos(#{mail});
+	</select>
+	
+	<select id="SQL_consultaMisFiltros" resultMap="mapMisFiltros" parameterType="usuarioBeanIbatis">
+		call ps_consultaMisFiltros(#{mail});
+	</select>
+	
+	<resultMap  id="mapRespuestaIntereses" type="respuestaIntereses">
+		<result property="pre" column="pre"/>
+		<result property="res" column="res"/>
+	</resultMap>
+	
+	<select id="SQL_listaRespuestaIntereses" resultMap="mapRespuestaIntereses" parameterType="usuarioBeanIbatis">
+		call ps_listaRespuestaIntereses(#{mail});
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
