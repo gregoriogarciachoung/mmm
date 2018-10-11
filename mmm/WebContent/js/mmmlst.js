@@ -1,5 +1,18 @@
 ellanomehacecaso.controller('ella', function($scope, $http) {
 	
+	$scope.listaSexo = function(){
+		$scope.sexos = [
+		                {
+		                	id : 1,
+		                	nom : 'Hombre'
+		                },
+		                {
+		                	id: 2,
+		                	nom : 'Mujer'
+		                }
+		                ]
+	},
+	
 	$scope.listaOtroUsuario = function() {
 		$http({
 		method: 'POST',

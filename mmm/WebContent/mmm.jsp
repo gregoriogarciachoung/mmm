@@ -132,7 +132,7 @@
 		<div ng-init="listaRelacionInteres()">
 			<ul ng-repeat="y in adatos">
 		
-			<li div ng-if="x.relacion.id == y.id"><input type="radio"checked="checked" name="chkr"> {{y.nom}}
+			<li ng-if="x.relacion.id == y.id"><input type="radio"checked="checked" name="chkr"> {{y.nom}}
 			
 			
 			<li ng-if="x.relacion.id != y.id"><input type="radio" name="chkr"> {{y.nom}}
@@ -141,13 +141,11 @@
 			
 		</div>
 		<h3>Busco</h3>
-			<div ng-if="x.sexo == 1">
-				<input type="radio" checked="checked" name="chkh"/>Hombre<br>
-				<input type="radio" name="chkh" />Mujer
-			</div>
-			<div ng-if="x.sexo == 2">
-				<input type="radio" name="chkm" />Hombre<br>
-				<input type="radio" checked="checked"  name="chkm"/>Mujer
+			<div ng-init="listaSexo()">
+				<ul ng-repeat="s in sexos">
+					<li ng-if="x.sexo == s.id"><input type="radio"checked="checked" name="chks"> {{s.nom}}
+					<li ng-if="x.sexo != s.id"><input type="radio"  name="chks"> {{s.nom}}
+				</ul>
 			</div>
 			<h3>Que tenga entre</h3>
 			<div><input type="number" value="{{x.edadMin}}"/><a style="padding:0 1em 0 1em">a</a>
