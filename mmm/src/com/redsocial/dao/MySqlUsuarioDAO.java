@@ -151,5 +151,4 @@ public List<InteresesUsuario> listaRespuestaIntereses(UsuarioBean filtro) throws
 	}
 	return lista;
 }
-
 }

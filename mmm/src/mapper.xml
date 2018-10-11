@@ -209,6 +209,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from interes where id= #{id}
 	</select>
 	
+	<select id="SQL_listaRelacion" resultMap="mapRelacion">
+		select * from interes
+	</select>
+	
 	<resultMap  id="mapMisFiltros" type="filtroUsuario">
 		<result property="sexo" column="Sexo"/>
 		<result property="edadMax" column="EdadMax"/>

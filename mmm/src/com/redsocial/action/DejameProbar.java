@@ -1,8 +1,10 @@
 package com.redsocial.action;
 
 import com.redsocial.bean.FiltroUsuario;
+import com.redsocial.bean.Relacion;
 import com.redsocial.bean.UsuarioBean;
 import com.redsocial.bean.UsuarioDatosBean;
+import com.redsocial.dao.MySqlRelacionInteresDAO;
 import com.redsocial.dao.MySqlUsuarioDAO;
 
 public class DejameProbar {
@@ -42,7 +44,7 @@ public static void main(String[] args) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}*/
-	FiltroUsuario filtro = new FiltroUsuario();
+/*	FiltroUsuario filtro = new FiltroUsuario();
 	filtro.setSexo(1);
 	filtro.setEdadMin(15);
 	filtro.setEdadMax(21);
@@ -61,6 +63,15 @@ public static void main(String[] args) {
 	try {
 		for(UsuarioBean b : dao.consultaMisDatos(b2)){
 			System.out.println(b.getNom());
+		}
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}*/
+	MySqlRelacionInteresDAO r = new MySqlRelacionInteresDAO();
+	try {
+		for(Relacion i : r.listaRelacionInteres()){
+			System.out.println(i.getId()+" - "+i.getNom());
 		}
 	} catch (Exception e) {
 		// TODO Auto-generated catch block

@@ -132,10 +132,10 @@
 		<div ng-init="listaRelacionInteres()">
 			<ul ng-repeat="y in adatos">
 		
-			<li div ng-if="x.relacion == y.id"><input type="radio"checked="checked" name="chkr"> {{y.nom}}
+			<li div ng-if="x.relacion.id == y.id"><input type="radio"checked="checked" name="chkr"> {{y.nom}}
 			
 			
-			<li ng-if="x.relacion != y.id"><input type="radio" name="chkr"> {{y.nom}}
+			<li ng-if="x.relacion.id != y.id"><input type="radio" name="chkr"> {{y.nom}}
 			
 			</ul>
 			
