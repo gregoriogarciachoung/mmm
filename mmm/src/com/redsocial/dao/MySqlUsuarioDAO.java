@@ -151,4 +151,20 @@ public List<InteresesUsuario> listaRespuestaIntereses(UsuarioBean filtro) throws
 	}
 	return lista;
 }
+@SuppressWarnings("unchecked")
+
+public List<UsuarioBean> listaDatosUsuario(UsuarioBean filtro) throws Exception {
+	List<UsuarioBean> lista = new ArrayList<UsuarioBean>();
+	SqlSession sesion = null; 
+	try {
+		sesion =  sqlMapper.openSession();
+		lista = sesion.selectList("SQL_listaDatosUsuario", filtro);
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally{
+		sesion.close();
+	}
+	return lista;
+}
 }

@@ -68,10 +68,24 @@ public static void main(String[] args) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}*/
-	MySqlRelacionInteresDAO r = new MySqlRelacionInteresDAO();
+	/*MySqlRelacionInteresDAO r = new MySqlRelacionInteresDAO();
 	try {
 		for(Relacion i : r.listaRelacionInteres()){
 			System.out.println(i.getId()+" - "+i.getNom());
+		}
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}*/
+	MySqlUsuarioDAO d = new MySqlUsuarioDAO();
+	UsuarioBean filtro = new UsuarioBean();
+	filtro.setId(1);
+	try {
+		for(UsuarioBean u : d.listaDatosUsuario(filtro)){
+			System.out.println(u.getNom());
+			System.out.println(u.getOcu());
+			//System.out.println(u.getDes());
+			//System.out.println(u.getEstCivil().getId()+"");
 		}
 	} catch (Exception e) {
 		// TODO Auto-generated catch block

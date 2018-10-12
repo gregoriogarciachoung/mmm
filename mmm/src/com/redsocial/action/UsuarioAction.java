@@ -7,13 +7,15 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.redsocial.bean.FiltroUsuario;
 import com.redsocial.bean.InteresesUsuario;
 import com.redsocial.bean.Relacion;
 import com.redsocial.bean.UsuarioBean;
 import com.redsocial.dao.MySqlUsuarioDAO;
-import javax.servlet.http.HttpSession;  
+import javax.servlet.http.HttpSession;
+
 import org.apache.struts2.ServletActionContext;
 
 @ParentPackage("dawi")
@@ -22,7 +24,7 @@ public class UsuarioAction extends ActionSupport{
 	/**
 	 * 
 	 */
-	
+	private int idU;
 	
 	
 	
@@ -36,7 +38,7 @@ public class UsuarioAction extends ActionSupport{
 	private List<FiltroUsuario> lstMisFiltros= new ArrayList<FiltroUsuario>();
 	
 	private List<InteresesUsuario> lstMisOtrosIntereses= new ArrayList<InteresesUsuario>();
-	
+	private List<UsuarioBean> lstDatosUsuario= new ArrayList<UsuarioBean>();
 	
 	
 	UsuarioBean u = new UsuarioBean();
@@ -122,6 +124,23 @@ System.out.println("-----------------------------------");
 		return SUCCESS;
 	}
 	
+	@Action(value = "/listaDatosUsuario", results = { @Result(name = "success", type = "json") })
+	public String listaDatosUsuario() {
+		try {
+			//String mimail2="nina@gmail.com";
+			int i = idU;
+						
+			u.setId(i);
+			MySqlUsuarioDAO service = new MySqlUsuarioDAO();
+			
+			lstDatosUsuario = service.listaDatosUsuario(u);
+			//System.out.println(lstDatosUsuario.get(0).getNom());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
 	
 	public List<UsuarioBean> getLstOtroUsuario() {
 		return lstOtroUsuario;
@@ -188,6 +207,26 @@ System.out.println("-----------------------------------");
 		this.lstMisOtrosIntereses = lstMisOtrosIntereses;
 	}
 
+
+
+	public List<UsuarioBean> getLstDatosUsuario() {
+		return lstDatosUsuario;
+	}
+
+
+	public void setLstDatosUsuario(List<UsuarioBean> lstDatosUsuario) {
+		this.lstDatosUsuario = lstDatosUsuario;
+	}
+
+
+	public int getIdU() {
+		return idU;
+	}
+
+
+	public void setIdU(int idU) {
+		this.idU = idU;
+	}
 
 
 	HttpSession session=ServletActionContext.getRequest().getSession(false);  

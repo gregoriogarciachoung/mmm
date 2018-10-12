@@ -207,9 +207,9 @@ ellanomehacecaso.controller('mehizoclick', function($scope, $http) {
 		//alert(i);
 		$http({
 		method: 'GET',
-		url: 'cargaOtroUsuario2?idU='+i,
+		url: 'listaDatosUsuario.action?idU='+i,
 		}).then(function(response) {
-		$scope.mdatos = response.data.lstCargaDatosOtroUsuario;
+		$scope.mdatos = response.data.lstDatosUsuario;
 		});
 	}
 });
