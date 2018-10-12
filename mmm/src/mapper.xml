@@ -179,7 +179,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="SQL_insertaUsuario" parameterType="usuarioBeanIbatis">
-		call sp_registraUsuario(#{nom},#{mail},#{pass},#{sexos.id},#{fecNac},#{distrito.id},#{hijos},#{estCivil.id},#{nivelA.id},#{miAltura},#{ocu},null);
+		call sp_registraUsuario(#{nom},#{mail},#{pass},#{sexos.id},#{fecNac},#{distrito.id},#{hijos},#{estCivil.id},#{nivelA.id},#{miAltura},#{ocu},#{relacion.id},null);
 	</insert>
 	
 	<select id="SQL_loginUsuario" parameterType="usuarioBeanIbatis" resultMap="mapUsuario">

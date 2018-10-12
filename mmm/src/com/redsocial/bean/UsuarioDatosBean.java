@@ -6,7 +6,9 @@ private int  hijos,  miAltura;
 private String ocu;
 private String fecNac;
 
-
+//este atributo se agrego por comodidad 
+//no está en la tabla pero si en los parametros del sp
+private Relacion relacion;
 
 
 public int getIdUsu() {
@@ -50,4 +52,13 @@ public String getFecNac() {
 public void setFecNac(String fecNac) {
 	this.fecNac = fecNac;
 }
+
+public Relacion getRelacion() {
+	return relacion;
+}
+
+public void setRelacion(Relacion relacion) {
+	this.relacion = relacion;
+}
+
 }

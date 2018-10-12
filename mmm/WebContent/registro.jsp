@@ -107,6 +107,18 @@
 	<h5>Mi ocupación</h5>
 	 <input type="text" placeholder="Completar" name="ocu"/>
 	</div>
+	<div>
+	<!--  -->
+	<h3>Elige el tipo de relación que desea encontrar</h3>
+	 <h4>Se encontrará con personas que buscan lo mismo</h4>
+	 <h5>Tipo de relación</h5>
+	<s:radio name="rela" list="#{
+	'1':'A su alma gemela, matrimomio',
+	'2':'Conocer nuevas personas y ver que pasa',
+	'3':'Una relacion de una noche',
+	'4':'Una relacion seria'
+	}" value="1" />
+	</div>
 	
 	<div>
 	<!-- ¡Falta poco! -->

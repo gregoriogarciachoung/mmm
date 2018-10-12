@@ -22,6 +22,10 @@ private int edad; // atributo que no se encuentra en la tabla usuario pero está 
 
 private FiltroUsuario busca; // borrar
 
+//este atributo se agrego por comodidad 
+//no está en la tabla pero si en los parametros del sp
+private Relacion relacion;
+
 /*
  * 	System.out.println(sexos);
 		System.out.println(hijos);
@@ -31,6 +35,12 @@ private FiltroUsuario busca; // borrar
 		System.out.println(ocu);
  * */
 
+public Relacion getRelacion() {
+	return relacion;
+}
+public void setRelacion(Relacion relacion) {
+	this.relacion = relacion;
+}
 public int getId() {
 	return id;
 }

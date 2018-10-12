@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.redsocial.bean.DistritoBean;
 import com.redsocial.bean.EstadoCivilBean;
 import com.redsocial.bean.NivelEducacionBean;
+import com.redsocial.bean.Relacion;
 import com.redsocial.bean.SexoBean;
 import com.redsocial.bean.UsuarioBean;
 import com.redsocial.dao.MySqlUsuarioDAO;
@@ -32,6 +33,10 @@ public class RegistroUsuarioAction extends ActionSupport {
 	private String ocu;
 	
 	private int distrito;
+	
+	//atributo no esta en la tabla usuarioDatos pero si en el parametro del sp
+	//por comodidad se agrega el atributo relacion a la entidad usuarioDatos
+	private int rela;
 	
 	public String registrar(){
 	/*	System.out.println(nom);
@@ -66,11 +71,13 @@ public class RegistroUsuarioAction extends ActionSupport {
 			SexoBean dis1 = new SexoBean();
 			EstadoCivilBean dis2 = new EstadoCivilBean();
 			NivelEducacionBean dis3 = new NivelEducacionBean();
+			Relacion r = new Relacion();
 			
 			dis.setId(distrito);
 			dis1.setId(sexos);
 			dis2.setId(estCivil);
 			dis3.setId(nivelA);
+			r.setId(rela);
 			
 			uu.setMail(correo);
 			uu.setPass(clave);
@@ -83,8 +90,9 @@ public class RegistroUsuarioAction extends ActionSupport {
 			uu.setDistrito(dis);
 			uu.setNivelA(dis3);
 			uu.setFecNac(fecNac);
+			uu.setRelacion(r);
 			
-			System.out.println(sexos+" "+estCivil+" "+nivelA);
+			System.out.println(sexos+" "+estCivil+" "+nivelA+" "+rela);
 			System.out.println("------------------------------------");
 			
 			//llave fk
@@ -242,6 +250,20 @@ public class RegistroUsuarioAction extends ActionSupport {
 
 	public void setFecNac(String fecNac) {
 		this.fecNac = fecNac;
+	}
+
+
+
+
+	public int getRela() {
+		return rela;
+	}
+
+
+
+
+	public void setRela(int rela) {
+		this.rela = rela;
 	}
 	
 	
