@@ -103,19 +103,19 @@
 		<div ng-controller="ella" ng-init="listaMisDatos()">
 			<div class="marcotres" ng-repeat="x in datos">
 			<p>Autodescripción</p>
-			<p>{{x.des}}</p>
-			<h3>EDITAR</h3>
+			<input type="text" value="{{x.des}}"/>
+			<h3>GRABAR</h3>
 			<p>Ocupación</p>
-			<p>{{x.ocu}}</p>
-			<h3>EDITAR</h3>
+			<input type="text" value="{{x.ocu}}"/>
+			<h3>GRABAR</h3>
 			</div>
 		</div>
 		<h2 class="t2">Mis Intereses<h2>
 		<div  ng-init="listaMisOtrosIntereses()">
 			<div ng-repeat="x in datos" class="marcodos" id="tampocomehacecaso">
 			<p>{{x.pre}}</p>
-			<p>"{{x.res}}"</p>
-			<h3>EDITAR</h3>
+			<input type="text" value="{{x.res}}"/>
+			<h3>GRABAR</h3>
 			</div>
 		</div>
 		</form>

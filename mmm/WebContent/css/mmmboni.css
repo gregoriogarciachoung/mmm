@@ -135,3 +135,11 @@ padding:0;
 margin:0;
 list-style:none
 }
+#id_perfil input[type="text"]{
+	width:100%;
+	border:0;
+	font-size:12px;
+}
+.marcodos input[type="text"]{
+	background:#f7f7f7;
+}
