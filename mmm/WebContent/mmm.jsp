@@ -56,7 +56,7 @@
 	<aside>
 		<nav>
 			<ul>
-				<li>Seguidores
+				<li>Sugeridos
 				<li>Invitaciones
 				<li>Mensajes
 				<li>Mi Perfil

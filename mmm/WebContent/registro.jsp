@@ -114,9 +114,9 @@
 	 <h5>Tipo de relación</h5>
 	<s:radio name="rela" list="#{
 	'1':'A su alma gemela, matrimomio',
-	'2':'Conocer nuevas personas y ver que pasa',
-	'3':'Una relacion de una noche',
-	'4':'Una relacion seria'
+	'2':'Una relacion seria',
+	'3':'Conocer nuevas personas y ver que pasa',
+	'4':'Una relacion de una noche'
 	}" value="1" />
 	</div>
 	
